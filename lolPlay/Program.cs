@@ -1,6 +1,17 @@
 var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
+var environment = builder.Environment;
 
-app.MapGet("/", () => "Hello World!");
+if (environment.IsDevelopment())
+{
+    app.UseDeveloperExceptionPage();
+    app.MapGet("/", () => "Is Developed!");
+}
+else
+{
+    app.MapGet("/", () => "Is NOT Developed!");
+}
+
+//app.MapGet("/", () => "Hello World!");
 
 app.Run();
